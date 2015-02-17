@@ -2,6 +2,5 @@
 Highload. 2015.
 
 Necessary libraries: 
-gcc 4.8.1 
-libevent 2.0.22 
-boost 1.55.0
+<br>gcc 4.8.1
+<br>boost 1.55.0
