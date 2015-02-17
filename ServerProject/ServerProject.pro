@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     reply.cpp \
     request_handler.cpp \
     request_parser.cpp \
-    connection.cpp
+    connection.cpp \
+    server.cpp
 
 HEADERS += \
     header.hpp \
@@ -29,7 +30,8 @@ HEADERS += \
     reply.hpp \
     request_handler.hpp \
     request_parser.hpp \
-    connection.hpp
+    connection.hpp \
+    server.hpp
 
 LIBS += -L"/usr/local/boost_1_55_0/stage/lib/" \
         -lboost_system \
