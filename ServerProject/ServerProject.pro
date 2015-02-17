@@ -19,14 +19,15 @@ SOURCES += main.cpp \
     mime_types.cpp \
     reply.cpp
 
-LIBS += -L"/usr/local/boost_1_55_0/stage/lib/" -lboost_thread \
-        -lrt
-
-
-INCLUDEPATH += /usr/local/boost_1_55_0/
-
 HEADERS += \
     header.hpp \
     mime_types.hpp \
     request.hpp \
     reply.hpp
+
+LIBS += -L"/usr/local/boost_1_55_0/stage/lib/" \
+        -lboost_system \
+        -lboost_thread
+
+
+INCLUDEPATH += /usr/local/boost_1_55_0/
