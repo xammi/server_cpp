@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     mime_types.cpp \
     reply.cpp \
     request_handler.cpp \
-    request_parser.cpp
+    request_parser.cpp \
+    connection.cpp
 
 HEADERS += \
     header.hpp \
@@ -27,7 +28,8 @@ HEADERS += \
     request.hpp \
     reply.hpp \
     request_handler.hpp \
-    request_parser.hpp
+    request_parser.hpp \
+    connection.hpp
 
 LIBS += -L"/usr/local/boost_1_55_0/stage/lib/" \
         -lboost_system \
