@@ -226,15 +226,15 @@ std::string to_string(reply::status_type status) {
 } // namespace stock_replies
 
 reply reply::stock_reply(reply::status_type status) {
-    reply the_reply;
-    the_reply.status = status;
-    the_reply.content = stock_replies::to_string(status);
-    the_reply.headers.resize(2);
-    the_reply.headers[0].name = "Content-Length";
-    the_reply.headers[0].value = boost::lexical_cast<std::string>(the_reply.content.size());
-    the_reply.headers[1].name = "Content-Type";
-    the_reply.headers[1].value = "text/html";
-    return the_reply;
+    reply rep;
+    rep.status = status;
+    rep.content = stock_replies::to_string(status);
+    rep.headers.resize(2);
+    rep.headers[0].name = "Content-Length";
+    rep.headers[0].value = boost::lexical_cast<std::string>(rep.content.size());
+    rep.headers[1].name = "Content-Type";
+    rep.headers[1].value = "text/html";
+    return rep;
 }
 
 } // namespace http
