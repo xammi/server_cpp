@@ -9,7 +9,7 @@
 namespace http {
 
 // A reply to be sent to a client.
-struct reply {
+struct Reply {
 
     // The status of the reply.
     enum status_type
@@ -44,7 +44,7 @@ struct reply {
     std::vector<boost::asio::const_buffer> to_buffers();
 
     // Get a stock reply.
-    static reply stock_reply(status_type status);
+    static Reply stock_reply(status_type status);
 };
 
 } // namespace http

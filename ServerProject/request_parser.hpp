@@ -6,14 +6,14 @@
 
 namespace http {
 
-struct request;
+struct Request;
 
 // Parser for incoming requests.
-class request_parser
+class RequestParser
 {
 public:
     // Construct ready to parse the request method.
-    request_parser();
+    RequestParser();
 
     // Reset to initial parser state.
     void reset();
@@ -23,7 +23,7 @@ public:
     // data is required. The InputIterator return value indicates how much of the
     // input has been consumed.
     template <typename InputIterator>
-    boost::tuple<boost::tribool, InputIterator> parse(request & req, InputIterator begin, InputIterator end) {
+    boost::tuple<boost::tribool, InputIterator> parse(Request & req, InputIterator begin, InputIterator end) {
 
         while (begin != end) {
             boost::tribool result = consume(req, *begin++);
@@ -36,7 +36,7 @@ public:
 
 private:
     // Handle the next character of input.
-    boost::tribool consume(request & req, char input);
+    boost::tribool consume(Request & req, char input);
 
     // Check if a byte is an HTTP character.
     static bool is_char(int c);

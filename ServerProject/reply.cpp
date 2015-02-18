@@ -39,40 +39,40 @@ const std::string bad_gateway =
 const std::string service_unavailable =
   "HTTP/1.0 503 Service Unavailable\r\n";
 
-boost::asio::const_buffer to_buffer(reply::status_type status) {
+boost::asio::const_buffer to_buffer(Reply::status_type status) {
     switch (status)
     {
-    case reply::ok:
+    case Reply::ok:
         return boost::asio::buffer(ok);
-    case reply::created:
+    case Reply::created:
         return boost::asio::buffer(created);
-    case reply::accepted:
+    case Reply::accepted:
         return boost::asio::buffer(accepted);
-    case reply::no_content:
+    case Reply::no_content:
         return boost::asio::buffer(no_content);
-    case reply::multiple_choices:
+    case Reply::multiple_choices:
         return boost::asio::buffer(multiple_choices);
-    case reply::moved_permanently:
+    case Reply::moved_permanently:
         return boost::asio::buffer(moved_permanently);
-    case reply::moved_temporarily:
+    case Reply::moved_temporarily:
         return boost::asio::buffer(moved_temporarily);
-    case reply::not_modified:
+    case Reply::not_modified:
         return boost::asio::buffer(not_modified);
-    case reply::bad_request:
+    case Reply::bad_request:
         return boost::asio::buffer(bad_request);
-    case reply::unauthorized:
+    case Reply::unauthorized:
         return boost::asio::buffer(unauthorized);
-    case reply::forbidden:
+    case Reply::forbidden:
         return boost::asio::buffer(forbidden);
-    case reply::not_found:
+    case Reply::not_found:
         return boost::asio::buffer(not_found);
-    case reply::internal_server_error:
+    case Reply::internal_server_error:
         return boost::asio::buffer(internal_server_error);
-    case reply::not_implemented:
+    case Reply::not_implemented:
         return boost::asio::buffer(not_implemented);
-    case reply::bad_gateway:
+    case Reply::bad_gateway:
         return boost::asio::buffer(bad_gateway);
-    case reply::service_unavailable:
+    case Reply::service_unavailable:
         return boost::asio::buffer(service_unavailable);
     default:
         return boost::asio::buffer(internal_server_error);
@@ -88,7 +88,7 @@ const char crlf[] = { '\r', '\n' };
 
 } // namespace misc_strings
 
-std::vector<boost::asio::const_buffer> reply::to_buffers() {
+std::vector<boost::asio::const_buffer> Reply::to_buffers() {
     std::vector<boost::asio::const_buffer> buffers;
     buffers.push_back(status_strings::to_buffer(status));
 
@@ -184,39 +184,39 @@ const char service_unavailable[] =
   "<body><h1>503 Service Unavailable</h1></body>"
   "</html>";
 
-std::string to_string(reply::status_type status) {
+std::string to_string(Reply::status_type status) {
     switch (status) {
-    case reply::ok:
+    case Reply::ok:
         return ok;
-    case reply::created:
+    case Reply::created:
         return created;
-    case reply::accepted:
+    case Reply::accepted:
         return accepted;
-    case reply::no_content:
+    case Reply::no_content:
         return no_content;
-    case reply::multiple_choices:
+    case Reply::multiple_choices:
         return multiple_choices;
-    case reply::moved_permanently:
+    case Reply::moved_permanently:
         return moved_permanently;
-    case reply::moved_temporarily:
+    case Reply::moved_temporarily:
         return moved_temporarily;
-    case reply::not_modified:
+    case Reply::not_modified:
         return not_modified;
-    case reply::bad_request:
+    case Reply::bad_request:
         return bad_request;
-    case reply::unauthorized:
+    case Reply::unauthorized:
         return unauthorized;
-    case reply::forbidden:
+    case Reply::forbidden:
         return forbidden;
-    case reply::not_found:
+    case Reply::not_found:
         return not_found;
-    case reply::internal_server_error:
+    case Reply::internal_server_error:
         return internal_server_error;
-    case reply::not_implemented:
+    case Reply::not_implemented:
         return not_implemented;
-    case reply::bad_gateway:
+    case Reply::bad_gateway:
         return bad_gateway;
-    case reply::service_unavailable:
+    case Reply::service_unavailable:
         return service_unavailable;
     default:
         return internal_server_error;
@@ -225,8 +225,8 @@ std::string to_string(reply::status_type status) {
 
 } // namespace stock_replies
 
-reply reply::stock_reply(reply::status_type status) {
-    reply rep;
+Reply Reply::stock_reply(Reply::status_type status) {
+    Reply rep;
     rep.status = status;
     rep.content = stock_replies::to_string(status);
     rep.headers.resize(2);
