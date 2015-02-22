@@ -13,33 +13,38 @@
 
 namespace http {
 
+using boost::system::error_code;
+using boost::asio::ip::tcp;
+using boost::asio::io_service;
+using boost::shared_ptr;
+
 class Connection
         : public boost::enable_shared_from_this<Connection>,
           private boost::noncopyable
 {
 public:
-    explicit Connection(boost::asio::io_service & io_service, RequestHandler & handler);
+    explicit Connection(io_service & io_service_, RequestHandler & handler);
 
-    boost::asio::ip::tcp::socket & socket();
+    tcp::socket & get_socket();
 
     void start();
 
 private:
 
-    void handle_read(const boost::system::error_code &, std::size_t bytes_transferred);
-    void handle_write(const boost::system::error_code &);
+    void handle_read(const error_code &, size_t bytes_transferred);
+    void handle_write(const error_code &);
 
-    boost::asio::io_service::strand strand_;
-    boost::asio::ip::tcp::socket socket_;
+    io_service::strand strand_;
+    tcp::socket socket_;
     boost::array<char, 8192> buffer_;
 
     RequestHandler & request_handler;
     Request request;
     RequestParser request_parser;
-    Response reply;
+    Response response;
 };
 
-typedef boost::shared_ptr<Connection> ConnectionPtr;
+typedef shared_ptr<Connection> ConnectionPtr;
 
 } // namespace http
 

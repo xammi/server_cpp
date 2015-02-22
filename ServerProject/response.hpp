@@ -1,15 +1,14 @@
 #ifndef REPLY_HPP
 #define REPLY_HPP
 
-#include <string>
 #include <vector>
 #include <boost/asio.hpp>
 #include "header.hpp"
 
 namespace http {
 
-using std::string;
 using std::vector;
+using boost::asio::buffer;
 using boost::asio::const_buffer;
 
 struct Response {

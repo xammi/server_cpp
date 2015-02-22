@@ -7,6 +7,7 @@
 namespace http {
 
 using std::string;
+using std::size_t;
 
 struct Response;
 struct Request;

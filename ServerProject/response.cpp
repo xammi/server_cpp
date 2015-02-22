@@ -8,7 +8,6 @@
 namespace http {
 
 using std::size_t;
-using boost::asio::buffer;
 
 namespace status_strings {
 

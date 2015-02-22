@@ -6,8 +6,9 @@
 
 namespace http {
 
-using std::vector;
 using boost::thread;
+using boost::bind;
+namespace placeholders = boost::asio::placeholders;
 
 Server::Server(const string & address, const string & port, const string & doc_root, size_t thread_pool_size)
     : thread_pool_size_(thread_pool_size),
@@ -23,14 +24,14 @@ Server::Server(const string & address, const string & port, const string & doc_r
     signals_.add(SIGQUIT);
 #endif
 
-    signals_.async_wait(boost::bind(& Server::handle_stop, this));
+    signals_.async_wait(bind(& Server::handle_stop, this));
 
-    boost::asio::ip::tcp::resolver resolver(io_service_);
-    boost::asio::ip::tcp::resolver::query query(address, port);
-    boost::asio::ip::tcp::endpoint endpoint = *resolver.resolve(query);
+    tcp::resolver resolver(io_service_);
+    tcp::resolver::query query(address, port);
+    tcp::endpoint endpoint = *resolver.resolve(query);
 
     acceptor_.open(endpoint.protocol());
-    acceptor_.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+    acceptor_.set_option(tcp::acceptor::reuse_address(true));
     acceptor_.bind(endpoint);
     acceptor_.listen();
 
@@ -38,26 +39,24 @@ Server::Server(const string & address, const string & port, const string & doc_r
 }
 
 void Server::run() {
-    vector<boost::shared_ptr<boost::thread> > threads;
+    vector<shared_ptr<thread> > threads;
 
     for (std::size_t i = 0; i < thread_pool_size_; ++i) {
-        boost::shared_ptr<boost::thread> thread(new boost::thread(
-            boost::bind(& boost::asio::io_service::run, & io_service_)));
-        threads.push_back(thread);
+        shared_ptr<thread> thread_ptr(new thread(bind(& io_service::run, & io_service_)));
+        threads.push_back(thread_ptr);
     }
 
-    for (std::size_t i = 0; i < threads.size(); ++i)
+    for (size_t i = 0; i < threads.size(); ++i)
         threads[i]->join();
 }
 
 void Server::start_accept() {
     new_connection_.reset(new Connection(io_service_, request_handler_));
-    acceptor_.async_accept(new_connection_->socket(),
-        boost::bind(& Server::handle_accept, this,
-            boost::asio::placeholders::error));
+    acceptor_.async_accept(new_connection_->get_socket(),
+                           bind(& Server::handle_accept, this, placeholders::error));
 }
 
-void Server::handle_accept(const boost::system::error_code & error) {
+void Server::handle_accept(const error_code & error) {
     if (! error) {
         new_connection_->start();
     }

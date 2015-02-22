@@ -3,13 +3,12 @@
 #include <sstream>
 #include <string>
 #include <boost/lexical_cast.hpp>
+
 #include "mime_types.hpp"
 #include "response.hpp"
 #include "request.hpp"
 
 namespace http {
-
-using std::size_t;
 
 RequestHandler::RequestHandler(const string & doc_root_)
   : doc_root(doc_root_)

@@ -11,8 +11,7 @@
 
 namespace http {
 
-using std::string;
-using std::size_t;
+using boost::asio::signal_set;
 
 class Server : private boost::noncopyable
 {
@@ -24,15 +23,15 @@ public:
 
 private:
     void start_accept();
-    void handle_accept(const boost::system::error_code &);
+    void handle_accept(const error_code &);
     void handle_stop();
 
 private:
     size_t thread_pool_size_;
 
-    boost::asio::io_service io_service_;
-    boost::asio::signal_set signals_;
-    boost::asio::ip::tcp::acceptor acceptor_;
+    io_service io_service_;
+    signal_set signals_;
+    tcp::acceptor acceptor_;
 
     ConnectionPtr new_connection_;
     RequestHandler request_handler_;
