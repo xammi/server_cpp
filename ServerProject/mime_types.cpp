@@ -16,7 +16,7 @@ struct mapping {
   { 0, 0 } // Marks end of list.
 };
 
-std::string extension_to_type(const std::string & extension) {
+string extension_to_type(const string & extension) {
     for (mapping * m = mappings; m->extension; ++m) {
         if (m->extension == extension) {
             return m->mime_type;

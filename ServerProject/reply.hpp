@@ -8,6 +8,9 @@
 
 namespace http {
 
+using std::string;
+using std::vector;
+
 struct Reply {
 
     enum status_type
@@ -30,9 +33,9 @@ struct Reply {
         service_unavailable = 503
     } status;
 
-    std::vector<header> headers;
-    std::string content;
-    std::vector<boost::asio::const_buffer> to_buffers();
+    vector<header> headers;
+    string content;
+    vector<boost::asio::const_buffer> to_buffers();
 
     static Reply stock_reply(status_type status);
 };

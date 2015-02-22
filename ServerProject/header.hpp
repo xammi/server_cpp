@@ -5,13 +5,15 @@
 
 namespace http {
 
+using std::string;
+
 struct header {
-    header(const std::string & _name, const std::string & _value)
+    header(const string & _name, const string & _value)
         : name(_name), value(_value)
     {}
 
-    std::string name;
-    std::string value;
+    string name;
+    string value;
 };
 
 } // namespace http
