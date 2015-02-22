@@ -17,21 +17,21 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     mime_types.cpp \
-    reply.cpp \
     request_handler.cpp \
     request_parser.cpp \
     connection.cpp \
-    server.cpp
+    server.cpp \
+    response.cpp
 
 HEADERS += \
     header.hpp \
     mime_types.hpp \
     request.hpp \
-    reply.hpp \
     request_handler.hpp \
     request_parser.hpp \
     connection.hpp \
-    server.hpp
+    server.hpp \
+    response.hpp
 
 LIBS += -L"/usr/local/boost_1_55_0/stage/lib/" \
         -lboost_system \

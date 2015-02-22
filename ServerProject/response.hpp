@@ -10,11 +10,11 @@ namespace http {
 
 using std::string;
 using std::vector;
+using boost::asio::const_buffer;
 
-struct Reply {
+struct Response {
 
-    enum status_type
-    {
+    enum status_type {
         ok = 200,
         created = 201,
         accepted = 202,
@@ -35,9 +35,9 @@ struct Reply {
 
     vector<header> headers;
     string content;
-    vector<boost::asio::const_buffer> to_buffers();
+    vector<const_buffer> to_buffers();
 
-    static Reply stock_reply(status_type status);
+    static Response stock_reply(status_type status);
 };
 
 } // namespace http

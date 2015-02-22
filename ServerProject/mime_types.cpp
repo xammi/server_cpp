@@ -3,26 +3,24 @@
 namespace http {
 namespace mime_types {
 
-struct mapping {
-    const char * extension;
-    const char * mime_type;
-} mappings[] =
-{
-  { "gif", "image/gif" },
-  { "htm", "text/html" },
-  { "html", "text/html" },
-  { "jpg", "image/jpeg" },
-  { "png", "image/png" },
-  { 0, 0 } // Marks end of list.
-};
-
 string extension_to_type(const string & extension) {
-    for (mapping * m = mappings; m->extension; ++m) {
-        if (m->extension == extension) {
-            return m->mime_type;
-        }
-    }
+    switch (extension) {
+        case "json": return "application/json";
+        case "js": return "application/javascript";
+        case "pdf": return "application/pdf";
 
+        case "mp3": return "audio/mp3";
+        case "mp4": return "video/mp4";
+
+        case "jpg": return "image/jpeg";
+        case "png": return "image/png";
+        case "gif": return "image/gif";
+
+        case "htm": return "text/html";
+        case "html": return "text/html";
+        case "css": return "text/css";
+        case "xml": return "text/xml";
+    }
     return "text/plain";
 }
 
