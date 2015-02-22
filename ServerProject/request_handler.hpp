@@ -8,7 +8,7 @@ namespace http {
 
 using std::string;
 
-struct Reply;
+struct Response;
 struct Request;
 
 class RequestHandler : private boost::noncopyable
@@ -16,7 +16,7 @@ class RequestHandler : private boost::noncopyable
 public:
     explicit RequestHandler(const string & doc_root);
 
-    void handle_request(const Request & req, Reply & rep);
+    void handle_request(const Request & req, Response & rep);
 
 private:
     static bool url_decode(const string & in, string & out);

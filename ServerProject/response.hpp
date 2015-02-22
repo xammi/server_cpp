@@ -33,10 +33,12 @@ struct Response {
         service_unavailable = 503
     } status;
 
-    vector<header> headers;
+    vector<Header> headers;
     string content;
     vector<const_buffer> to_buffers();
 
+    static string get_http_date_now();
+    static Response ok_reply(const string & extension);
     static Response stock_reply(status_type status);
 };
 

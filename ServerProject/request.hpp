@@ -17,7 +17,7 @@ struct Request {
     int http_version_major;
     int http_version_minor;
 
-    vector<header> headers;
+    vector<Header> headers;
 };
 
 } // namespace http

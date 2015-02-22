@@ -18,7 +18,7 @@ RequestHandler::RequestHandler(const string & doc_root)
 
 void RequestHandler::handle_request(const Request & req, Response & res) {
     string request_path;
-    if (!url_decode(req.uri, request_path)) {
+    if (! url_decode(req.uri, request_path)) {
         res = Response::stock_reply(Response::bad_request);
         return;
     }
@@ -47,15 +47,10 @@ void RequestHandler::handle_request(const Request & req, Response & res) {
         return;
     }
 
-    res.status = Response::ok;
+    res = Response::ok_reply(extension);
     char buf[512];
     while (is.read(buf, sizeof(buf)).gcount() > 0)
         res.content.append(buf, is.gcount());
-
-    res.headers = {
-        header("Content-Length", boost::lexical_cast<std::string>(res.content.size())),
-        header("Content-Type", mime_types::extension_to_type(extension)),
-    };
 }
 
 bool RequestHandler::url_decode(const string & in, string & out) {
@@ -64,29 +59,26 @@ bool RequestHandler::url_decode(const string & in, string & out) {
 
     for (size_t i = 0; i < in.size(); ++i) {
         if (in[i] == '%') {
+
             if (i + 3 <= in.size()) {
                 int value = 0;
                 std::istringstream is(in.substr(i + 1, 2));
+
                 if (is >> std::hex >> value) {
                     out += static_cast<char>(value);
                     i += 2;
                 }
-                else {
+                else
                     return false;
-                }
             }
-            else {
+            else
                 return false;
-            }
         }
-        else if (in[i] == '+') {
+        else if (in[i] == '+')
             out += ' ';
-        }
-        else {
+        else
             out += in[i];
-        }
     }
-
     return true;
 }
 

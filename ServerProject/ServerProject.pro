@@ -9,7 +9,7 @@ QT       -= gui
 
 TARGET = ServerProject
 CONFIG   += console
-# CONFIG   += c++11
+CONFIG   += c++11
 CONFIG   -= app_bundle
 
 TEMPLATE = app

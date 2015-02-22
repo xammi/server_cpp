@@ -3,7 +3,7 @@
 
 namespace http {
 
-using boost::intermediate;
+using boost::logic::indeterminate;
 
 RequestParser::RequestParser()
   : state_(method_start)
@@ -153,7 +153,7 @@ boost::tribool RequestParser::consume(Request & req, char input) {
                 return false;
             }
             else {
-                req.headers.push_back(header());
+                req.headers.push_back(Header());
                 req.headers.back().name.push_back(input);
                 state_ = header_name;
                 return indeterminate;

@@ -1,6 +1,9 @@
 #include "response.hpp"
 #include <string>
+#include <time.h>
 #include <boost/lexical_cast.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include "mime_types.hpp"
 
 namespace http {
 
@@ -10,6 +13,8 @@ using std::size_t;
 
 using boost::asio::buffer;
 using boost::asio::const_buffer;
+
+namespace pt = boost::posix_time;
 
 namespace status_strings {
 
@@ -68,7 +73,7 @@ vector<const_buffer> Response::to_buffers() {
     buffers.push_back(status_strings::to_buffer(status));
 
     for (size_t i = 0; i < headers.size(); ++i) {
-        header & h = headers[i];
+        Header & h = headers[i];
         buffers.push_back(buffer(h.name));
         buffers.push_back(buffer(misc_strings::name_value_separator));
         buffers.push_back(buffer(h.value));
@@ -82,12 +87,11 @@ vector<const_buffer> Response::to_buffers() {
 
 namespace stock_replies {
 
-string wrapper(title, text) {
-    return "<html>"
-           + "<head><title>" + title + "</title></head>"
-           + "<body><h1>"+ text + "</h1></body>"
-           + "</html>";
-}
+#define wrapper(title, text) \
+    "<html>" \
+    "<head><title>" #title "</title></head>" \
+    "<body><h1>" #text "</h1></body>" \
+    "</html>"
 
 string to_string(Response::status_type status) {
     switch (status) {
@@ -130,14 +134,42 @@ string to_string(Response::status_type status) {
 
 } // namespace stock_replies
 
+
+string Response::get_http_date_now() {
+    char buf[30];
+    time_t now = time(0);
+    struct tm tm = *gmtime(& now);
+
+    strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %Z\0", &tm);
+    return string(buf);
+}
+
+Response Response::ok_reply(const string & extension) {
+    Response res;
+    res.status = Response::ok;
+    res.content = "";
+
+    res.headers = {
+        {"Date", Response::get_http_date_now() },
+        {"Server", "KMix boost 1.0"},
+        {"Content-Length", boost::lexical_cast<std::string>(res.content.size())},
+        {"Content-Type", mime_types::extension_to_type(extension)},
+        {"Connection", "close"},
+    };
+    return res;
+}
+
 Response Response::stock_reply(Response::status_type status) {
     Response res;
     res.status = status;
     res.content = stock_replies::to_string(status);
 
     res.headers = {
-        header("Content-Length", boost::lexical_cast<std::string>(res.content.size())),
-        header("Content-Type", "text/html"),
+        {"Date", Response::get_http_date_now() },
+        {"Server", "KMix boost 1.0"},
+        {"Content-Length", boost::lexical_cast<std::string>(res.content.size())},
+        {"Content-Type", "text/html"},
+        {"Connection", "close"},
     };
     return res;
 }

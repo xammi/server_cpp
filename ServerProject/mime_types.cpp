@@ -1,26 +1,35 @@
 #include "mime_types.hpp"
+#include <map>
 
 namespace http {
 namespace mime_types {
 
+
+std::map<string, string> mappings = {
+
+    {"html", "text/html"},
+    {"js", "application/javascript"},
+    {"css", "text/css"},
+
+    {"htm", "text/html"},
+    {"xml", "text/xml"},
+
+    {"jpg", "image/jpeg"},
+    {"jpeg", "image/jpeg"},
+    {"png", "image/png"},
+    {"gif", "image/gif"},
+
+    {"json", "application/json"},
+    {"swf", "application/x-shockwave-flash"},
+    {"pdf", "application/pdf"},
+
+    {"mp3", "audio/mpeg3"},
+};
+
 string extension_to_type(const string & extension) {
-    switch (extension) {
-        case "json": return "application/json";
-        case "js": return "application/javascript";
-        case "pdf": return "application/pdf";
-
-        case "mp3": return "audio/mp3";
-        case "mp4": return "video/mp4";
-
-        case "jpg": return "image/jpeg";
-        case "png": return "image/png";
-        case "gif": return "image/gif";
-
-        case "htm": return "text/html";
-        case "html": return "text/html";
-        case "css": return "text/css";
-        case "xml": return "text/xml";
-    }
+    auto it = mappings.find(extension);
+    if (it != mappings.end())
+        return it->second;
     return "text/plain";
 }
 

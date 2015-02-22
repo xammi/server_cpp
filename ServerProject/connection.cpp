@@ -34,7 +34,7 @@ void Connection::handle_read(const boost::system::error_code & e, std::size_t by
                     boost::asio::placeholders::error)));
         }
         else if (!result) {
-            reply = Reply::stock_reply(Reply::bad_request);
+            reply = Response::stock_reply(Response::bad_request);
             boost::asio::async_write(socket_, reply.to_buffers(),
                 strand_.wrap(
                     boost::bind(&Connection::handle_write, shared_from_this(),

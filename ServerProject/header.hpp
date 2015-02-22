@@ -8,6 +8,7 @@ namespace http {
 using std::string;
 
 struct Header {
+    Header() {}
     Header(const string & _name, const string & _value)
         : name(_name), value(_value)
     {}
