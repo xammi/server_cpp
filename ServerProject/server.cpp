@@ -1,12 +1,9 @@
 #include "server.hpp"
-#include <boost/thread/thread.hpp>
 #include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
 #include <vector>
 
 namespace http {
 
-using boost::thread;
 using boost::bind;
 namespace placeholders = boost::asio::placeholders;
 
@@ -39,15 +36,15 @@ Server::Server(const string & address, const string & port, const string & doc_r
 }
 
 void Server::run() {
-    vector<shared_ptr<thread> > threads;
+    vector<ThreadPtr> threads;
 
     for (std::size_t i = 0; i < thread_pool_size_; ++i) {
-        shared_ptr<thread> thread_ptr(new thread(bind(& io_service::run, & io_service_)));
+        ThreadPtr thread_ptr(new thread(bind(& io_service::run, & io_service_)));
         threads.push_back(thread_ptr);
     }
 
-    for (size_t i = 0; i < threads.size(); ++i)
-        threads[i]->join();
+    for (ThreadPtr & thread_ptr : threads)
+        thread_ptr->join();
 }
 
 void Server::start_accept() {

@@ -23,7 +23,7 @@ class Connection
           private boost::noncopyable
 {
 public:
-    explicit Connection(io_service & io_service_, RequestHandler & handler);
+    Connection(io_service & io_service_, RequestHandler & handler);
 
     tcp::socket & get_socket();
 

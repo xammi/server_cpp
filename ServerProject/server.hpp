@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <boost/noncopyable.hpp>
+#include <boost/thread/thread.hpp>
 #include <boost/shared_ptr.hpp>
 #include "connection.hpp"
 #include "request_handler.hpp"
@@ -12,11 +13,12 @@
 namespace http {
 
 using boost::asio::signal_set;
+using boost::thread;
 
 class Server : private boost::noncopyable
 {
 public:
-    explicit Server(const string & address, const string & port, const string & doc_root, size_t thread_pool_size);
+    Server(const string & address, const string & port, const string & doc_root, size_t thread_pool_size);
     ~Server() {}
 
     void run();
@@ -36,6 +38,8 @@ private:
     ConnectionPtr new_connection_;
     RequestHandler request_handler_;
 };
+
+typedef shared_ptr<thread> ThreadPtr;
 
 } // namespace http
 
