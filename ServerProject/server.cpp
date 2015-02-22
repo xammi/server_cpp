@@ -6,10 +6,7 @@
 
 namespace http {
 
-using std::string;
-using std::size_t;
 using std::vector;
-
 using boost::thread;
 
 Server::Server(const string & address, const string & port, const string & doc_root, size_t thread_pool_size)

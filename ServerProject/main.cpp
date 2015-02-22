@@ -7,14 +7,17 @@
 
 using http::Server;
 using std::size_t;
+using boost::lexical_cast;
+
+using std::endl;
 using std::cerr;
 
 void print_help() {
-    cerr << "Usage: http_server <address> <port> <threads> <doc_root>\n";
-    cerr << "  For IPv4, try:\n";
-    cerr << "    receiver 0.0.0.0 80 1 .\n";
-    cerr << "  For IPv6, try:\n";
-    cerr << "    receiver 0::0 80 1 .\n";
+    cerr << "Usage: http_server <address> <port> <threads> <doc_root>" << endl;
+    cerr << "  For IPv4, try:" << endl;
+    cerr << "    receiver 0.0.0.0 80 1 ." << endl;
+    cerr << "  For IPv6, try:" << endl;
+    cerr << "    receiver 0::0 80 1 ." << endl;
 }
 
 int main(int argc, char* argv[]) {
@@ -24,9 +27,7 @@ int main(int argc, char* argv[]) {
             return 1;
         }
 
-        size_t num_threads = boost::lexical_cast<size_t>(argv[3]);
-
-        Server server(argv[1], argv[2], argv[4], num_threads);
+        Server server(argv[1], argv[2], argv[4], lexical_cast<size_t>(argv[3]));
         server.run();
     }
     catch (std::exception & e) {

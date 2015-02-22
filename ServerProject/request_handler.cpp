@@ -9,11 +9,10 @@
 
 namespace http {
 
-using std::string;
 using std::size_t;
 
-RequestHandler::RequestHandler(const string & doc_root)
-  : doc_root_(doc_root)
+RequestHandler::RequestHandler(const string & doc_root_)
+  : doc_root(doc_root_)
 {}
 
 void RequestHandler::handle_request(const Request & req, Response & res) {
@@ -40,7 +39,7 @@ void RequestHandler::handle_request(const Request & req, Response & res) {
         extension = request_path.substr(last_dot_pos + 1);
     }
 
-    string full_path = doc_root_ + request_path;
+    string full_path = doc_root + request_path;
     std::ifstream is(full_path.c_str(), std::ios::in | std::ios::binary);
     if (!is) {
         res = Response::stock_reply(Response::not_found);

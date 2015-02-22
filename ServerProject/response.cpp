@@ -7,14 +7,8 @@
 
 namespace http {
 
-using std::string;
-using std::vector;
 using std::size_t;
-
 using boost::asio::buffer;
-using boost::asio::const_buffer;
-
-namespace pt = boost::posix_time;
 
 namespace status_strings {
 

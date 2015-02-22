@@ -6,6 +6,11 @@
 
 namespace http {
 
+using boost::tuples::tuple;
+using boost::logic::tribool;
+using boost::make_tuple;
+using boost::logic::indeterminate;
+
 struct Request;
 
 class RequestParser
@@ -16,26 +21,26 @@ public:
     void reset();
 
     template <typename InputIterator>
-    boost::tuple<boost::tribool, InputIterator> parse(Request & req, InputIterator begin, InputIterator end) {
+    tuple<tribool, InputIterator> parse(Request & req, InputIterator begin, InputIterator end) {
 
         while (begin != end) {
-            boost::tribool result = consume(req, *begin++);
+            tribool result = consume(req, *begin++);
             if (result || !result)
-                return boost::make_tuple(result, begin);
+                return make_tuple(result, begin);
         }
-        boost::tribool result = boost::indeterminate;
-        return boost::make_tuple(result, begin);
+        tribool result = indeterminate;
+        return make_tuple(result, begin);
     }
 
 private:
-    boost::tribool consume(Request & req, char input);
+    tribool consume(Request & req, char input);
 
     static bool is_char(int c);
     static bool is_ctl(int c);
     static bool is_tspecial(int c);
     static bool is_digit(int c);
 
-    enum state {
+    enum State {
         method_start,
         method,
         uri,
@@ -56,7 +61,7 @@ private:
         header_value,
         expecting_newline_2,
         expecting_newline_3
-    } state_;
+    } state;
 };
 
 } // namespace http
