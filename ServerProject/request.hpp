@@ -7,15 +7,17 @@
 
 namespace http {
 
-// A request received from a client.
+using std::string;
+using std::vector;
+
 struct Request {
-    std::string method;
-    std::string uri;
+    string method;
+    string uri;
 
     int http_version_major;
     int http_version_minor;
 
-    std::vector<header> headers;
+    vector<header> headers;
 };
 
 } // namespace http

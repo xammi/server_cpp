@@ -6,27 +6,22 @@
 
 namespace http {
 
+using std::string;
+
 struct Reply;
 struct Request;
 
-// The common handler for all incoming requests.
-class RequestHandler
-        : private boost::noncopyable
+class RequestHandler : private boost::noncopyable
 {
 public:
-    // Construct with a directory containing files to be served.
-    explicit RequestHandler(const std::string & doc_root);
+    explicit RequestHandler(const string & doc_root);
 
-    // Handle a request and produce a reply.
     void handle_request(const Request & req, Reply & rep);
 
 private:
-    // The directory containing the files to be served.
-    std::string doc_root_;
+    static bool url_decode(const string & in, string & out);
 
-    // Perform URL-decoding on a string. Returns false if the encoding was
-    // invalid.
-    static bool url_decode(const std::string & in, std::string & out);
+    string doc_root_;
 };
 
 } // namespace http

@@ -220,7 +220,7 @@ std::string to_string(Reply::status_type status) {
         return service_unavailable;
     default:
         return internal_server_error;
-  }
+    }
 }
 
 } // namespace stock_replies
