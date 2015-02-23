@@ -15,13 +15,17 @@ namespace http {
 using boost::asio::signal_set;
 using boost::thread;
 
+typedef shared_ptr<thread> ThreadPtr;
+
 class Server : private boost::noncopyable
 {
+
 public:
-    Server(const string & address, const string & port, const string & doc_root, size_t thread_pool_size);
+    Server(const string & address, const string & port, const string & doc_root, int thread_pool_size);
     ~Server() {}
 
     void run();
+    void join();
 
 private:
     void start_accept();
@@ -29,7 +33,8 @@ private:
     void handle_stop();
 
 private:
-    size_t thread_pool_size_;
+    int thread_pool_size_;
+    vector<ThreadPtr> pool;
 
     io_service io_service_;
     signal_set signals_;
@@ -38,8 +43,6 @@ private:
     ConnectionPtr new_connection_;
     RequestHandler request_handler_;
 };
-
-typedef shared_ptr<thread> ThreadPtr;
 
 } // namespace http
 

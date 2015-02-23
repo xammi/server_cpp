@@ -7,7 +7,7 @@ namespace http {
 using boost::bind;
 namespace placeholders = boost::asio::placeholders;
 
-Server::Server(const string & address, const string & port, const string & doc_root, size_t thread_pool_size)
+Server::Server(const string & address, const string & port, const string & doc_root, int thread_pool_size)
     : thread_pool_size_(thread_pool_size),
       signals_(io_service_),
       acceptor_(io_service_),
@@ -36,14 +36,14 @@ Server::Server(const string & address, const string & port, const string & doc_r
 }
 
 void Server::run() {
-    vector<ThreadPtr> threads;
-
-    for (std::size_t i = 0; i < thread_pool_size_; ++i) {
+    for (int i = 0; i < thread_pool_size_; ++i) {
         ThreadPtr thread_ptr(new thread(bind(& io_service::run, & io_service_)));
-        threads.push_back(thread_ptr);
+        pool.push_back(thread_ptr);
     }
+}
 
-    for (ThreadPtr & thread_ptr : threads)
+void Server::join() {
+    for (ThreadPtr & thread_ptr : pool)
         thread_ptr->join();
 }
 

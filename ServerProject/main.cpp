@@ -2,36 +2,62 @@
 #include <string>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
-#include <boost/lexical_cast.hpp>
 #include "server.hpp"
+#include <boost/program_options.hpp>
 
 using http::Server;
-using std::size_t;
-using boost::lexical_cast;
-
+using std::string;
+using std::cout;
 using std::endl;
-using std::cerr;
 
-void print_help() {
-    cerr << "Usage: http_server <address> <port> <threads> <doc_root>" << endl;
-    cerr << "  For IPv4, try:" << endl;
-    cerr << "    receiver 0.0.0.0 80 1 ." << endl;
-    cerr << "  For IPv6, try:" << endl;
-    cerr << "    receiver 0::0 80 1 ." << endl;
+namespace po = boost::program_options;
+
+void description(po::options_description & meta) {
+    meta.add_options()
+            ("help,h", "produce help message")
+            ("address,a",
+             po::value<string>()->required(),
+             "Binded server address"
+            )
+            ("port,p",
+             po::value<string>()->default_value("5005"),
+             "Listened server port"
+            )
+            ("threads,t",
+             po::value<int>()->default_value(4),
+             "Max size of thread pool"
+            )
+            ("doc-root,d",
+             po::value<string>()->default_value("."),
+             "Document root"
+            );
 }
 
 int main(int argc, char* argv[]) {
     try {
-        if (argc != 5) {
-            print_help();
-            return 1;
-        }
+        po::options_description meta;
+        description(meta);
+        po::variables_map vars;
 
-        Server server(argv[1], argv[2], argv[4], lexical_cast<size_t>(argv[3]));
+        po::store(po::parse_command_line(argc, argv, meta), vars);
+        if (vars.count("help")) {
+            cout << meta << endl;
+            return 0;
+        }
+        po::notify(vars);
+
+        const string & address = vars["address"].as<string>();
+        const string & port = vars["port"].as<string>();
+        const string & doc_root = vars["doc-root"].as<string>();
+        int threads_cnt = vars["threads"].as<int>();
+
+        Server server(address, port, doc_root, threads_cnt);
         server.run();
+        cout << "Server started at " << address << ":" << port << endl;
+        server.join();
     }
     catch (std::exception & e) {
-        cerr << "exception: " << e.what() << "\n";
+        std::cerr << "exception: " << e.what() << endl;
     }
 
     return 0;

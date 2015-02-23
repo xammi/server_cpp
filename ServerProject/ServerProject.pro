@@ -35,7 +35,8 @@ HEADERS += \
 
 LIBS += -L"/usr/local/boost_1_55_0/stage/lib/" \
         -lboost_system \
-        -lboost_thread
+        -lboost_thread \
+        -lboost_program_options
 
 
 INCLUDEPATH += /usr/local/boost_1_55_0/
