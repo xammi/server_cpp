@@ -7,12 +7,13 @@ namespace http {
 using boost::bind;
 namespace placeholders = boost::asio::placeholders;
 
-Server::Server(const string & address, const string & port, const string & doc_root, int thread_pool_size)
-    : thread_pool_size_(thread_pool_size),
+Server::Server(const string & address, const string & port, const string & doc_root, int thread_pool_size_)
+    : thread_pool_size(thread_pool_size_),
+      io_service_(),
       signals_(io_service_),
       acceptor_(io_service_),
-      new_connection_(),
-      request_handler_(doc_root)
+      new_connection(),
+      request_handler(doc_root)
 {
     signals_.add(SIGINT);
     signals_.add(SIGTERM);
@@ -36,7 +37,7 @@ Server::Server(const string & address, const string & port, const string & doc_r
 }
 
 void Server::run() {
-    for (int i = 0; i < thread_pool_size_; ++i) {
+    for (int i = 0; i < thread_pool_size; ++i) {
         ThreadPtr thread_ptr(new thread(bind(& io_service::run, & io_service_)));
         pool.push_back(thread_ptr);
     }
@@ -48,14 +49,14 @@ void Server::join() {
 }
 
 void Server::start_accept() {
-    new_connection_.reset(new Connection(io_service_, request_handler_));
-    acceptor_.async_accept(new_connection_->get_socket(),
+    new_connection.reset(new Connection(io_service_, request_handler));
+    acceptor_.async_accept(new_connection->get_socket(),
                            bind(& Server::handle_accept, this, placeholders::error));
 }
 
 void Server::handle_accept(const error_code & error) {
     if (! error) {
-        new_connection_->start();
+        new_connection->start();
     }
     start_accept();
 }

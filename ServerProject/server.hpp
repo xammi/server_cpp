@@ -33,15 +33,15 @@ private:
     void handle_stop();
 
 private:
-    int thread_pool_size_;
+    int thread_pool_size;
     vector<ThreadPtr> pool;
 
     io_service io_service_;
     signal_set signals_;
     tcp::acceptor acceptor_;
 
-    ConnectionPtr new_connection_;
-    RequestHandler request_handler_;
+    ConnectionPtr new_connection;
+    RequestHandler request_handler;
 };
 
 } // namespace http
