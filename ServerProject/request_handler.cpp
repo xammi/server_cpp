@@ -18,8 +18,8 @@ RequestHandler::RequestHandler(const string & doc_root_)
 {}
 
 void RequestHandler::handle_request(const Request & req, Response & res) {
-    if (!iequals(req.method, "GET") || !iequals(req.method, "HEAD")) {
-        res = Response::stock_reply(Response::not_implemented);
+    if (!iequals(req.method, "GET") && !iequals(req.method, "HEAD")) {
+        res = Response::stock_reply(Response::not_allowed);
         return;
     }
 
@@ -34,8 +34,10 @@ void RequestHandler::handle_request(const Request & req, Response & res) {
         return;
     }
 
+    bool req_index = false;
     if (request_path[request_path.size() - 1] == '/') {
         request_path += "index.html";
+        req_index = true;
     }
 
     size_t last_slash_pos = request_path.find_last_of("/");
@@ -47,21 +49,27 @@ void RequestHandler::handle_request(const Request & req, Response & res) {
     }
 
     string full_path = doc_root + request_path;
+    std::cout << req.method << " " << full_path << std::endl;
+
     std::ifstream is(full_path.c_str(), std::ios::in | std::ios::binary);
     if (!is) {
-        res = Response::stock_reply(Response::not_found);
+        if (req_index)
+            res = Response::stock_reply(Response::forbidden);
+        else
+            res = Response::stock_reply(Response::not_found);
         return;
     }
 
+    res = Response::ok_reply(extension);
     if (iequals(req.method, "HEAD")) {
-        res = Response::ok_reply(extension);
+        is.seekg(0, std::ios_base::end);
+        res.setContentLength(is.tellg());
     }
     else if (iequals(req.method, "GET")) {
-
         char buf[512];
         while (is.read(buf, sizeof(buf)).gcount() > 0)
             res.content.append(buf, is.gcount());
-        res = Response::ok_reply(extension);
+        res.updateContentLength();
     }
 }
 
@@ -88,6 +96,8 @@ bool RequestHandler::url_decode(const string & in, string & out) {
         }
         else if (in[i] == '+')
             out += ' ';
+        else if (in[i] == '?')
+            return true; // parse GET parameters
         else
             out += in[i];
     }

@@ -26,6 +26,7 @@ struct Response {
         unauthorized = 401,
         forbidden = 403,
         not_found = 404,
+        not_allowed = 405,
         internal_server_error = 500,
         not_implemented = 501,
         bad_gateway = 502,
@@ -39,6 +40,9 @@ struct Response {
     static string get_http_date_now();
     static Response ok_reply(const string & extension);
     static Response stock_reply(status_type status);
+
+    void updateContentLength();
+    void setContentLength(const int);
 };
 
 } // namespace http

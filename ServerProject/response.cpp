@@ -8,6 +8,7 @@
 namespace http {
 
 using std::size_t;
+using std::string;
 
 namespace status_strings {
 
@@ -38,6 +39,8 @@ const_buffer to_buffer(Response::status_type status) {
         return buffer("HTTP/1.0 403 Forbidden\r\n");
     case Response::not_found:
         return buffer("HTTP/1.0 404 Not Found\r\n");
+    case Response::not_allowed:
+        return buffer("HTTP/1.0 405 Method Not Allowed\r\n");
     case Response::internal_server_error:
         return buffer("HTTP/1.0 500 Internal Server Error\r\n");
     case Response::not_implemented:
@@ -112,6 +115,8 @@ string to_string(Response::status_type status) {
         return wrapper("Forbidden", "403 Forbidden");
     case Response::not_found:
         return wrapper("Not Found", "404 Not Found");
+    case Response::not_allowed:
+        return wrapper("Not Allowed", "405 Method Not Allowed");
     case Response::internal_server_error:
         return wrapper("Internal Server Error", "500 Internal Server Error");
     case Response::not_implemented:
@@ -145,7 +150,7 @@ Response Response::ok_reply(const string & extension) {
     res.headers = {
         {"Date", Response::get_http_date_now() },
         {"Server", "KMix boost 1.0"},
-        {"Content-Length", boost::lexical_cast<std::string>(res.content.size())},
+        {"Content-Length", "0"},
         {"Content-Type", mime_types::extension_to_type(extension)},
         {"Connection", "close"},
     };
@@ -160,11 +165,19 @@ Response Response::stock_reply(Response::status_type status) {
     res.headers = {
         {"Date", Response::get_http_date_now() },
         {"Server", "KMix boost 1.0"},
-        {"Content-Length", boost::lexical_cast<std::string>(res.content.size())},
+        {"Content-Length", boost::lexical_cast<string>(res.content.size())},
         {"Content-Type", "text/html"},
         {"Connection", "close"},
     };
     return res;
+}
+
+void Response::updateContentLength() {
+    headers[2].value = boost::lexical_cast<string>(content.size());
+}
+
+void Response::setContentLength(const int value) {
+    headers[2].value = boost::lexical_cast<string>(value);
 }
 
 } // namespace http
