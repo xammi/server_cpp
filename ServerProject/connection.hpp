@@ -18,8 +18,6 @@ using boost::asio::ip::tcp;
 using boost::asio::io_service;
 using boost::shared_ptr;
 
-typedef shared_ptr<Connection> ConnectionPtr;
-
 class Connection
         : public boost::enable_shared_from_this<Connection>,
           private boost::noncopyable
@@ -45,6 +43,8 @@ private:
     RequestParser request_parser;
     Response response;
 };
+
+typedef shared_ptr<Connection> ConnectionPtr;
 
 } // namespace http
 

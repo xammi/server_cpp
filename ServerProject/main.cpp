@@ -23,11 +23,11 @@ void description(po::options_description & meta) {
              po::value<string>()->default_value("5005"),
              "Listened server port"
             )
-            ("threads,t",
+            ("threads,c",
              po::value<int>()->default_value(4),
              "Max size of thread pool"
             )
-            ("doc-root,d",
+            ("doc-root,r",
              po::value<string>()->default_value("."),
              "Document root"
             );

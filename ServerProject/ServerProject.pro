@@ -7,7 +7,7 @@
 QT       += core
 QT       -= gui
 
-TARGET = ServerProject
+TARGET = httpd
 CONFIG   += console
 CONFIG   += c++11
 CONFIG   -= app_bundle
