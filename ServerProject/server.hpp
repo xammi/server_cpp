@@ -21,11 +21,10 @@ class Server : private boost::noncopyable
 {
 
 public:
-    Server(const string & address, const string & port, const string & doc_root, int thread_pool_size);
+    Server(const string & address, const string & port, const string & doc_root);
     ~Server() {}
 
     void run();
-    void join();
 
 private:
     void start_accept();
@@ -33,9 +32,6 @@ private:
     void handle_stop();
 
 private:
-    int thread_pool_size;
-    vector<ThreadPtr> pool;
-
     io_service io_service_;
     signal_set signals_;
     tcp::acceptor acceptor_;

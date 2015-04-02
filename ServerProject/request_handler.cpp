@@ -49,7 +49,7 @@ void RequestHandler::handle_request(const Request & req, Response & res) {
     }
 
     string full_path = doc_root + request_path;
-    std::cout << req.method << " " << full_path << std::endl;
+    // std::cout << req.method << " " << full_path << std::endl;
 
     std::ifstream is(full_path.c_str(), std::ios::in | std::ios::binary);
     if (!is) {
@@ -66,7 +66,7 @@ void RequestHandler::handle_request(const Request & req, Response & res) {
         res.setContentLength(is.tellg());
     }
     else if (iequals(req.method, "GET")) {
-        char buf[512];
+        char buf[124];
         while (is.read(buf, sizeof(buf)).gcount() > 0)
             res.content.append(buf, is.gcount());
         res.updateContentLength();

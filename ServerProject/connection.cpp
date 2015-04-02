@@ -54,14 +54,7 @@ void Connection::handle_read(const error_code & e, size_t bytes_transferred) {
                     )));
         }
         else {
-            socket_.async_read_some(buffer(buffer_),
-                strand_.wrap(
-                    bind(
-                        & Connection::handle_read,
-                        shared_from_this(),
-                        placeholders::error,
-                        placeholders::bytes_transferred
-                    )));
+            this->start();
         }
     }
 }

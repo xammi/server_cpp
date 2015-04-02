@@ -1568,96 +1568,7 @@ main.o: ../ServerProject/main.cpp /usr/local/boost_1_55_0/boost/asio.hpp \
 		/usr/local/boost_1_55_0/boost/thread/shared_mutex.hpp \
 		/usr/local/boost_1_55_0/boost/thread/pthread/shared_mutex.hpp \
 		/usr/local/boost_1_55_0/boost/thread/win32/shared_mutex.hpp \
-		../ServerProject/connection.hpp \
-		../ServerProject/response.hpp \
-		../ServerProject/header.hpp \
-		../ServerProject/request.hpp \
 		../ServerProject/request_handler.hpp \
-		../ServerProject/request_parser.hpp \
-		/usr/local/boost_1_55_0/boost/logic/tribool.hpp \
-		/usr/local/boost_1_55_0/boost/logic/tribool_fwd.hpp \
-		/usr/local/boost_1_55_0/boost/tuple/tuple.hpp \
-		/usr/local/boost_1_55_0/boost/tuple/detail/tuple_basic_no_partial_spec.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/add_cv.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/aligned_storage.hpp \
-		/usr/local/boost_1_55_0/boost/aligned_storage.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/conditional.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/extent.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/floating_point_promotion.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/multiplies.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/times.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/vector.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/limits/vector.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/aux_/sequence_wrapper.hpp \
-		/usr/local/boost_1_55_0/boost/preprocessor/enum_params_with_a_default.hpp \
-		/usr/local/boost_1_55_0/boost/preprocessor/repetition/enum_params_with_a_default.hpp \
-		/usr/local/boost_1_55_0/boost/preprocessor/facilities/intercept.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/function_traits.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_new_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_nothrow_destructor.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_and.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/detail/has_binary_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_and_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_or.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_or_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_xor.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_xor_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_complement.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/detail/has_prefix_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_dereference.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_divides.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_divides_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_equal_to.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_greater.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_greater_equal.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_left_shift.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_left_shift_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_less.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_less_equal.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_logical_and.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_logical_not.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_logical_or.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_minus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_minus_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_modulus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_modulus_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_multiplies.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_multiplies_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_negate.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_not_equal_to.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_plus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_plus_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_post_decrement.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/detail/has_postfix_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_post_increment.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_pre_decrement.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_pre_increment.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_right_shift.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_right_shift_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_unary_minus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_unary_plus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_virtual_destructor.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_complex.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_compound.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_copy_constructible.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_empty.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_member_object_pointer.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_object.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_stateless.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_virtual_base_of.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/rank.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/remove_extent.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/msvc/remove_extent.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/remove_all_extents.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/msvc/remove_all_extents.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/remove_volatile.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/msvc/remove_volatile.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/integral_promotion.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/promote.hpp \
-		/usr/local/boost_1_55_0/boost/tuple/detail/tuple_basic.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/cv_traits.hpp \
 		/usr/local/boost_1_55_0/boost/program_options.hpp \
 		/usr/local/boost_1_55_0/boost/program_options/options_description.hpp \
 		/usr/local/boost_1_55_0/boost/program_options/config.hpp \
@@ -1681,6 +1592,8 @@ main.o: ../ServerProject/main.cpp /usr/local/boost_1_55_0/boost/asio.hpp \
 		/usr/local/boost_1_55_0/boost/numeric/conversion/detail/udt_builtin_mixture.hpp \
 		/usr/local/boost_1_55_0/boost/numeric/conversion/udt_builtin_mixture_enum.hpp \
 		/usr/local/boost_1_55_0/boost/numeric/conversion/detail/is_subranged.hpp \
+		/usr/local/boost_1_55_0/boost/mpl/multiplies.hpp \
+		/usr/local/boost_1_55_0/boost/mpl/times.hpp \
 		/usr/local/boost_1_55_0/boost/numeric/conversion/detail/converter.hpp \
 		/usr/local/boost_1_55_0/boost/numeric/conversion/bounds.hpp \
 		/usr/local/boost_1_55_0/boost/numeric/conversion/detail/bounds.hpp \
@@ -1688,6 +1601,9 @@ main.o: ../ServerProject/main.cpp /usr/local/boost_1_55_0/boost/asio.hpp \
 		/usr/local/boost_1_55_0/boost/numeric/conversion/detail/numeric_cast_traits.hpp \
 		/usr/local/boost_1_55_0/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_common.hpp \
 		/usr/local/boost_1_55_0/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp \
+		/usr/local/boost_1_55_0/boost/type_traits/has_left_shift.hpp \
+		/usr/local/boost_1_55_0/boost/type_traits/detail/has_binary_operator.hpp \
+		/usr/local/boost_1_55_0/boost/type_traits/has_right_shift.hpp \
 		/usr/local/boost_1_55_0/boost/math/special_functions/sign.hpp \
 		/usr/local/boost_1_55_0/boost/math/tools/config.hpp \
 		/usr/local/boost_1_55_0/boost/math/tools/user.hpp \
@@ -1699,7 +1615,13 @@ main.o: ../ServerProject/main.cpp /usr/local/boost_1_55_0/boost/asio.hpp \
 		/usr/local/boost_1_55_0/boost/math/policies/policy.hpp \
 		/usr/local/boost_1_55_0/boost/mpl/list.hpp \
 		/usr/local/boost_1_55_0/boost/mpl/limits/list.hpp \
+		/usr/local/boost_1_55_0/boost/mpl/aux_/sequence_wrapper.hpp \
+		/usr/local/boost_1_55_0/boost/preprocessor/enum_params_with_a_default.hpp \
+		/usr/local/boost_1_55_0/boost/preprocessor/repetition/enum_params_with_a_default.hpp \
+		/usr/local/boost_1_55_0/boost/preprocessor/facilities/intercept.hpp \
 		/usr/local/boost_1_55_0/boost/mpl/remove_if.hpp \
+		/usr/local/boost_1_55_0/boost/mpl/vector.hpp \
+		/usr/local/boost_1_55_0/boost/mpl/limits/vector.hpp \
 		/usr/local/boost_1_55_0/boost/mpl/comparison.hpp \
 		/usr/local/boost_1_55_0/boost/mpl/not_equal_to.hpp \
 		/usr/local/boost_1_55_0/boost/mpl/greater.hpp \
@@ -5852,96 +5774,7 @@ server.o: ../ServerProject/server.cpp ../ServerProject/server.hpp \
 		/usr/local/boost_1_55_0/boost/thread/shared_mutex.hpp \
 		/usr/local/boost_1_55_0/boost/thread/pthread/shared_mutex.hpp \
 		/usr/local/boost_1_55_0/boost/thread/win32/shared_mutex.hpp \
-		../ServerProject/connection.hpp \
-		../ServerProject/response.hpp \
-		../ServerProject/header.hpp \
-		../ServerProject/request.hpp \
-		../ServerProject/request_handler.hpp \
-		../ServerProject/request_parser.hpp \
-		/usr/local/boost_1_55_0/boost/logic/tribool.hpp \
-		/usr/local/boost_1_55_0/boost/logic/tribool_fwd.hpp \
-		/usr/local/boost_1_55_0/boost/tuple/tuple.hpp \
-		/usr/local/boost_1_55_0/boost/tuple/detail/tuple_basic_no_partial_spec.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/add_cv.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/aligned_storage.hpp \
-		/usr/local/boost_1_55_0/boost/aligned_storage.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/conditional.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/extent.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/floating_point_promotion.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/multiplies.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/times.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/vector.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/limits/vector.hpp \
-		/usr/local/boost_1_55_0/boost/mpl/aux_/sequence_wrapper.hpp \
-		/usr/local/boost_1_55_0/boost/preprocessor/enum_params_with_a_default.hpp \
-		/usr/local/boost_1_55_0/boost/preprocessor/repetition/enum_params_with_a_default.hpp \
-		/usr/local/boost_1_55_0/boost/preprocessor/facilities/intercept.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/function_traits.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_new_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_nothrow_destructor.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_and.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/detail/has_binary_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_and_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_or.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_or_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_xor.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_bit_xor_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_complement.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/detail/has_prefix_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_dereference.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_divides.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_divides_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_equal_to.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_greater.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_greater_equal.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_left_shift.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_left_shift_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_less.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_less_equal.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_logical_and.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_logical_not.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_logical_or.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_minus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_minus_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_modulus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_modulus_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_multiplies.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_multiplies_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_negate.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_not_equal_to.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_plus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_plus_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_post_decrement.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/detail/has_postfix_operator.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_post_increment.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_pre_decrement.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_pre_increment.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_right_shift.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_right_shift_assign.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_unary_minus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_unary_plus.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/has_virtual_destructor.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_complex.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_compound.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_copy_constructible.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_empty.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_member_object_pointer.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_object.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_stateless.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/is_virtual_base_of.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/rank.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/remove_extent.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/msvc/remove_extent.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/remove_all_extents.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/msvc/remove_all_extents.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/remove_volatile.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/msvc/remove_volatile.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/integral_promotion.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/promote.hpp \
-		/usr/local/boost_1_55_0/boost/tuple/detail/tuple_basic.hpp \
-		/usr/local/boost_1_55_0/boost/type_traits/cv_traits.hpp
+		../ServerProject/request_handler.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o server.o ../ServerProject/server.cpp
 
 response.o: ../ServerProject/response.cpp ../ServerProject/response.hpp \

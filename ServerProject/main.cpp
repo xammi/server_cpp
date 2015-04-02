@@ -23,10 +23,6 @@ void description(po::options_description & meta) {
              po::value<string>()->default_value("5005"),
              "Listened server port"
             )
-            ("threads,c",
-             po::value<int>()->default_value(4),
-             "Max size of thread pool"
-            )
             ("doc-root,r",
              po::value<string>()->default_value("."),
              "Document root"
@@ -49,12 +45,10 @@ int main(int argc, char* argv[]) {
         const string & address = vars["address"].as<string>();
         const string & port = vars["port"].as<string>();
         const string & doc_root = vars["doc-root"].as<string>();
-        int threads_cnt = vars["threads"].as<int>();
 
-        Server server(address, port, doc_root, threads_cnt);
-        server.run();
+        Server server(address, port, doc_root);
         cout << "Server started at " << address << ":" << port << endl;
-        server.join();
+        server.run();
     }
     catch (std::exception & e) {
         std::cerr << "exception: " << e.what() << endl;

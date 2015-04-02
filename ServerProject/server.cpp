@@ -7,9 +7,8 @@ namespace http {
 using boost::bind;
 namespace placeholders = boost::asio::placeholders;
 
-Server::Server(const string & address, const string & port, const string & doc_root, int thread_pool_size_)
-    : thread_pool_size(thread_pool_size_),
-      io_service_(),
+Server::Server(const string & address, const string & port, const string & doc_root)
+    : io_service_(),
       signals_(io_service_),
       acceptor_(io_service_),
       new_connection(),
@@ -37,15 +36,7 @@ Server::Server(const string & address, const string & port, const string & doc_r
 }
 
 void Server::run() {
-    for (int i = 0; i < thread_pool_size; ++i) {
-        ThreadPtr thread_ptr(new thread(bind(& io_service::run, & io_service_)));
-        pool.push_back(thread_ptr);
-    }
-}
-
-void Server::join() {
-    for (ThreadPtr & thread_ptr : pool)
-        thread_ptr->join();
+    io_service_.run();
 }
 
 void Server::start_accept() {
